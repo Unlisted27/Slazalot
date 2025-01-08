@@ -4,4 +4,4 @@ from assets import races
 
 player = basicrpg.character(races.human,professions.commoner,"DEFAULT")
 
-companion = basicrpg.character(races)
+companion = basicrpg.character(races.human,professions.commoner,basicrpg.genname())
