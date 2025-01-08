@@ -1,4 +1,5 @@
 #General functions
+import os
 def menu(options:list):
     length = 1
     i=1
@@ -15,5 +16,19 @@ def menu(options:list):
     print("_"*length)
     for thing in items:
         print(thing)
+    while True:
+        try:
+            answer = input("|:")
+            selected = options[int(answer)-1]
+            return(selected)
+        except Exception as e:
+            #print(e) #Uncomment this line to show error message when the user enters an invalid option
+            print("Invalid selection, try again")
 
-menu(["One","Two","Thirty-five"])
+def clear_screen():
+    # For Windows
+    if os.name == 'nt':
+        _ = os.system('cls')
+    # For macOS and Linux
+    else:
+        _ = os.system('clear')
