@@ -11,6 +11,7 @@ class screens():
     def __init__(self):
         pass
     def home_screen():
+        assets.utils.clear_screen()
         print(r'''  _________.____       _____  __________  _____  .____    ___________________
  /   _____/|    |     /  _  \ \____    / /  _  \ |    |   \_____  \__    ___/
  \_____  \ |    |    /  /_\  \  /     / /  /_\  \|    |    /   |   \|    |   
@@ -20,10 +21,15 @@ class screens():
         ans = assets.utils.menu("OPTIONS",["PLAY","EXIT","SETTINGS"])
         if ans == "PLAY":
             screens.char_creator()
+        elif ans == "EXIT":
+            exit()
+        elif ans == "SETTINGS":
+            input("SETTINGS COMING SOON")
+            screens.home_screen()
     def char_creator():
         player = assets.characters.player
         player.name = input("Player name: ")
-        for i in range(4):
+        for i in range(3):
             print("Randomising stats \ ",end="\r")
             time.sleep(0.2)
             print("Randomising stats |",end="\r")
@@ -44,4 +50,7 @@ class screens():
         input()
         assets.utils.clear_screen()
         player.printinvent()
+    def combattest():
+        assets.utils.combat([assets.characters.player,assets.characters.companion,assets.characters.goblin])
 screens.home_screen()
+screens.combattest()

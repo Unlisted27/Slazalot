@@ -5,3 +5,5 @@ from assets import races
 player = basicrpg.character(races.human,professions.commoner,"DEFAULT")
 
 companion = basicrpg.character(races.human,professions.commoner,basicrpg.genname())
+
+goblin = basicrpg.character(races.human,professions.commoner,basicrpg.genname())

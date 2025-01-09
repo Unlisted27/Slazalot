@@ -1,4 +1,5 @@
 #General functions
+import basicrpg
 import os
 def menu(name:str,options:list):
     '''Displays a menu of the paramater options.
@@ -39,3 +40,31 @@ def clear_screen():
     # For macOS and Linux
     else:
         _ = os.system('clear')
+
+def combat(characters:list):
+    """characters is a list of character objects"""
+    combat_order = {}
+    try:
+        initiative = 0
+        for item in characters:
+            print(f"{item.name} has joined the fight")
+            initiative = basicrpg.roll(1, 20)
+            combat_order.update({item: initiative})
+        # Sort characters by their initiative in combat_order
+        characters.sort(key=lambda char: combat_order.get(char, 0), reverse=True) #ummm IDK how this works, but it do. Not questioning it
+        i = 1
+        for char in characters:
+            print(f"[{i}]{char.name}")
+            i+=1 #HERE====================================================
+    except Exception as e:
+        print(e)
+class random_encounter():
+    ["Character interaction","Obstacle: log on road","Combat","Riddle, puzzle, or toll","random side quest"]
+    def combat(): #A random combat encounter
+        pass
+    def character_interaction(): #Character interaction
+        pass
+    def obstacle(): #Random obstacle blocking your path
+        pass
+    def toll(): #Toll can be a riddle, puzzle, or road toll
+        pass
