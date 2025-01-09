@@ -1,6 +1,12 @@
 #General functions
 import os
-def menu(options:list):
+def menu(name:str,options:list):
+    '''Displays a menu of the paramater options.
+    -
+    Selected option returned as string
+    -
+    ex: menu("Choose",["a","b","c"]) 
+    --> choice (say the player chose [1] (a), "a" would be returned)'''
     length = 1
     i=1
     items = []
@@ -14,6 +20,7 @@ def menu(options:list):
         if len(thing) > length:
             length = len(thing)
     print("_"*length)
+    print(f"|\033[4m{name + " "*(length - 1 - len(name))}\033[0m" )#The funny characters are the underlined escape sequence in python
     for thing in items:
         print(thing)
     while True:
