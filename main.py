@@ -3,7 +3,7 @@ import time
 import basicrpg
 import assets
 import assets.characters
-import assets.items
+import assets.game_entities
 import assets.utils
 assets.utils.clear_screen()
 print("Hello player, welcome to")
@@ -44,13 +44,15 @@ class screens():
         input("Continue to weapon selection?")
         assets.utils.clear_screen()
         ans = assets.utils.menu("CHOOSE YOUR WEAPON",["Sword","Mase","Battleaxe"])
-        if ans == "Sword": player.equip_weapon(assets.items.weapons.sword)
-        if ans == "Mase": player.equip_weapon(assets.items.weapons.mase)
-        if ans == "Battleaxe": player.equip_weapon(assets.items.weapons.battleaxe)
+        if ans == "Sword": player.equip_weapon(assets.game_entities.items.weapons.sword)
+        if ans == "Mase": player.equip_weapon(assets.game_entities.items.weapons.mase)
+        if ans == "Battleaxe": player.equip_weapon(assets.game_entities.items.weapons.battleaxe)
         input()
         assets.utils.clear_screen()
         player.printinvent()
     def combattest():
-        assets.utils.combat([assets.characters.player,assets.characters.companion,assets.characters.goblin])
+        assets.utils._combat([assets.characters.player,assets.characters.companion,assets.characters.goblin])
+    def test():
+        assets.utils.gen_character(assets.game_entities.races,assets.game_entities.professions)
 screens.home_screen()
-screens.combattest()
+screens.test()

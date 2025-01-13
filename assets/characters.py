@@ -1,9 +1,8 @@
 import basicrpg
-from assets import professions
-from assets import races
+from assets import game_entities
 
-player = basicrpg.character(races.human,professions.commoner,"DEFAULT")
+player = basicrpg.character(game_entities.races.human,game_entities.professions.commoner,"DEFAULT")
 
-companion = basicrpg.character(races.human,professions.commoner,basicrpg.genname())
+companion = basicrpg.character(game_entities.races.human,game_entities.professions.commoner,basicrpg.genname())
 
-goblin = basicrpg.character(races.human,professions.commoner,basicrpg.genname())
+goblin = basicrpg.character(game_entities.races.human,game_entities.professions.commoner,basicrpg.genname())

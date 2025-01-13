@@ -1,6 +1,6 @@
 #General functions
-import basicrpg
-import os
+import basicrpg,os,random
+from assets import game_entities
 def menu(name:str,options:list):
     '''Displays a menu of the paramater options.
     -
@@ -41,27 +41,42 @@ def clear_screen():
     else:
         _ = os.system('clear')
 
-def combat(characters:list):
+def gen_character(race_lib,prof_lib):
+    #char = basicrpg.character(race_lib.human)
+    races = vars(race_lib)#Gets all of the objects from the race library
+    print(races)
+    race_name,race = random.choice(list(races.items()))
+    print(race)
+    print(race.name)
+    #print(vars(race_lib))
+def _combat(characters:list): #UNUSED
     """characters is a list of character objects"""
     combat_order = {}
+    clear_screen()
+    print("----------------")
+    print("THE FIGHT BEGINS")
+    print("----------------")
     try:
         initiative = 0
         for item in characters:
-            print(f"{item.name} has joined the fight")
+            #print(f"{item.name} has joined the fight")
             initiative = basicrpg.roll(1, 20)
             combat_order.update({item: initiative})
         # Sort characters by their initiative in combat_order
         characters.sort(key=lambda char: combat_order.get(char, 0), reverse=True) #ummm IDK how this works, but it do. Not questioning it
         i = 1
         for char in characters:
-            print(f"[{i}]{char.name}")
-            i+=1 #HERE====================================================
+            print(f"[{i}]{char.name} | {char.race.name}")
+            i+=1
+        for char in characters:
+            print(f"It is {char.name}'s turn")
+
     except Exception as e:
         print(e)
 class random_encounter():
     ["Character interaction","Obstacle: log on road","Combat","Riddle, puzzle, or toll","random side quest"]
-    def combat(): #A random combat encounter
-        pass
+    #def combat(): #A random combat encounter
+        #pass
     def character_interaction(): #Character interaction
         pass
     def obstacle(): #Random obstacle blocking your path
