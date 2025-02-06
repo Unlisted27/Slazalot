@@ -2,7 +2,6 @@ import basicrpg
 class races:
     human = basicrpg.race("Human",0,0,0,0)
     goblin = basicrpg.race("Goblin",-1,-1,-1,0)
-
 class professions:
     commoner = basicrpg.profession("Commoner")
 

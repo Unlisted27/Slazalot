@@ -1,37 +1,6 @@
 #General functions
 import basicrpg,os,random
 from assets import game_entities
-def menu(name:str,options:list):
-    '''Displays a menu of the paramater options.
-    -
-    Selected option returned as string
-    -
-    ex: menu("Choose",["a","b","c"]) 
-    --> choice (say the player chose [1] (a), "a" would be returned)'''
-    length = 1
-    i=1
-    items = []
-    for item in options:
-        if type(item) != str:
-            raise TypeError("Items in list must be type str")
-        else:
-            items.append(f"|[{i}]{item}")
-            i+=1
-    for thing in items:
-        if len(thing) > length:
-            length = len(thing)
-    print("_"*length)
-    print(f"|\033[4m{name + " "*(length - 1 - len(name))}\033[0m" )#The funny characters are the underlined escape sequence in python
-    for thing in items:
-        print(thing)
-    while True:
-        try:
-            answer = input("|:")
-            selected = options[int(answer)-1]
-            return(selected)
-        except Exception as e:
-            #print(e) #Uncomment this line to show error message when the user enters an invalid option
-            print("Invalid selection, try again")
 
 def clear_screen():
     # For Windows
@@ -43,11 +12,26 @@ def clear_screen():
 
 def gen_character(race_lib,prof_lib):
     #char = basicrpg.character(race_lib.human)
-    races = vars(race_lib)#Gets all of the objects from the race library
-    print(races)
+    races = dict(vars(race_lib))#Gets all of the objects from the race library
+    professions = dict(vars(prof_lib)) #Ditto
+    races.pop("__module__")
+    races.pop("__dict__")
+    races.pop("__weakref__")
+    races.pop("__doc__")
+    professions.pop("__module__")
+    professions.pop("__dict__")
+    professions.pop("__weakref__")
+    professions.pop("__doc__")
+
+    #print(races)
+    #print(professions)
+    #Get random values
     race_name,race = random.choice(list(races.items()))
-    print(race)
-    print(race.name)
+    profession_name,profession = random.choice(list(professions.items()))
+    character = basicrpg.character(race,profession,basicrpg.genname())
+    character.create_random()
+    return(character)
+
     #print(vars(race_lib))
 def _combat(characters:list): #UNUSED
     """characters is a list of character objects"""
