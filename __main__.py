@@ -55,5 +55,6 @@ class screens():
     def test():
         random_character = assets.utils.gen_character(assets.game_entities.races,assets.game_entities.professions)
         random_character.printstats()
+        assets.game_entities.rooms.dungeon_enterance.execute()
 screens.home_screen()
 screens.test()

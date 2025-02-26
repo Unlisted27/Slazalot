@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=Slazalot
+Exec=sh -c "$(dirname %k)/run_game.sh"
+Type=Application
+Terminal=false
