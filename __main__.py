@@ -20,7 +20,8 @@ class screens():
         \/         \/       \/        \/       \/        \/       \/         ''')
         ans = basicrpg.menu("OPTIONS",["PLAY","EXIT","SETTINGS"])
         if ans == "PLAY":
-            screens.char_creator()
+            player = screens.char_creator()
+            return player
         elif ans == "EXIT":
             exit()
         elif ans == "SETTINGS":
@@ -50,11 +51,12 @@ class screens():
         input()
         assets.utils.clear_screen()
         player.printinvent()
+        return player
     def combattest():
         assets.utils._combat([assets.characters.player,assets.characters.companion,assets.characters.goblin])
     def test():
         random_character = assets.utils.gen_character(assets.game_entities.races,assets.game_entities.professions)
         random_character.printstats()
-        assets.game_entities.rooms.dungeon_enterance.execute()
-screens.home_screen()
+        assets.game_entities.rooms.dungeon_enterance.execute(player)
+player = screens.home_screen()
 screens.test()
